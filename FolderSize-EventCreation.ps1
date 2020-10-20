@@ -1,8 +1,26 @@
-﻿#requires -module PSFolderSize
+#requires -module PSFolderSize
 
 <#
 .SYNOPSIS
 Measure the size of the Profile Folders and writes warnings to the event log for OpsRamp to send the alert.
+
+.Description
+        Gets information about the FSLogix Folders (Profile or O365) if the Max Size(in GB) is larger than the value provided.
+		
+.EXAMPLE
+	.FolderSize-EventCreation.ps1 -Path P:\FSLogixProfile\Profiles -MaxSizeGB 13 -EventLogId 20901 -ExcludePaths " P:\FSLogixProfile\Profiles\OLD"
+
+.EXAMPLE
+	.FolderSize-EventCreation.ps1" -Path "\\servername\fslogixprofile\profiles" -MaxSizeGB 13 -EventLogId 20901 -ExcludePaths "\\servername\fslogixprofile\profiles\OLD"
+
+	    
+.NOTES
+	This script must run via task schedular. In mu case I have Profile and O365 containers on Azure servers
+        Task Scheduler Action. -windowstyle hidden -ExecutionPolicy Bypass -file "path\FolderSize-EventCreation.ps1" -Path "path" -MaxSizeGB 13 -EventLogId "int value" -ExcludePaths "path to exclude"
+        
+        You can remove mandatory property of "ExcludeFolder" if it is not required.
+        ValidateNotNullOrEmpty()]
+        [Parameter(Mandatory=$true)]
 #>
 
 [CmdletBinding()]
