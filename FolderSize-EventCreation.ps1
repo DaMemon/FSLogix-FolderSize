@@ -49,7 +49,7 @@ Try {
     $LargeProfiles = Get-FolderSize -BasePath $Path -OmitFolders $ExcludePaths | Where-Object 'Size(GB)' -GE $MaxSizeGB | Sort-Object 'Size(GB)'
 
     $LargeProfiles | ForEach-Object {
-        $message = "`r`nFolder Name =  {0} `nFolder Size = {1:N2} GB `nFolder Location = {2} `r`nScript Owner: Fahad Memon `nCompany: Experteq`n" -f $($_.FolderName), $_.'Size(GB)', $Path
+        $message = "`r`nFolder Name =  {0} `nFolder Size = {1:N2} GB `nFolder Location = {2} `r`nScript Owner: Fahad `nCompany: Private`n" -f $($_.FolderName), $_.'Size(GB)', $Path
         LargeProfile-EventLog -ProfileMessage $message
     }       
 }
